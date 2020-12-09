@@ -18,18 +18,18 @@ def read(control):
 	return read
 	#Temp und Licht Sensor abfragen
 
-if True:
-	licht = read(0x41)
-	temperatur = read(0x42)
-	poti = read(0x00)
-	if temperatur <= 160:
-		GPIO.setup(10, GPIO.OUT, initial=GPIO.LOW)
-		time.sleep(200)
-		GPIO.output(10, GPIO.HIGH)
-		#Pumpe anstellen und nach 200 Sekunden ausstellen falls die Temperatur zu hoch ist (So kann Wärme besser gepuffert werden da Wasser gleichmässig erwärmt wird, nicht nur obere Schichten)
-	else:
-		print("3", temperatur)
-		#Pumpe nicht anstellen
+
+licht = read(0x41)
+temperatur = read(0x42)
+poti = read(0x00)
+if temperatur <= 160:
+	GPIO.setup(10, GPIO.OUT, initial=GPIO.LOW)
+	time.sleep(200)
+	GPIO.output(10, GPIO.HIGH)
+	#Pumpe anstellen und nach 200 Sekunden ausstellen falls die Temperatur zu hoch ist (So kann Wärme besser gepuffert werden da Wasser gleichmässig erwärmt wird, nicht nur obere Schichten)
+else:
+	print("3", temperatur)
+	#Pumpe nicht anstellen
 
 def water():
 	GPIO.setup(10, GPIO.OUT, initial=GPIO.LOW)
